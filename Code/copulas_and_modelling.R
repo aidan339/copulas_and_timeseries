@@ -58,7 +58,7 @@ set.seed(2026)
 VAR_ES_normal = data.frame(Alpha = quantiles, L1_VAR = VAR(L1_NVDA, quantiles), L2_VAR = VAR(L2_AMD, quantiles), 
            L1_ES = ES_alpha(L1_NVDA, quantiles), L2_ES = ES_alpha(L2_AMD, quantiles))
 
-write.csv(round(VAR_ES_normal, 4), file = 'normal_risk_metrics.csv')
+write.csv(round(VAR_ES_normal, 4), file = 'Results/normal_risk_metrics.csv')
 
 ### Task 2 ###
 RNGversion("4.3.0")
@@ -107,7 +107,7 @@ L_ind = 0.5 * (1 - exp(X1_ind)) + 0.5 * (1 - exp(X2_ind))
 
 independence_copula_summary = data.frame(Alpha = quantiles, Value_At_Risk = VAR(L_ind, quantiles), Expected_Shortfall = ES_alpha(L_ind, quantiles))
 
-write.csv(round(independence_copula_summary,4), file = 'independence_copula_eq_port.csv')
+write.csv(round(independence_copula_summary,4), file = 'Results/independence_copula_eq_port.csv')
 
 ### Task 4: Gaussian Copula ###
 
@@ -143,7 +143,7 @@ X2_gaussian = as.numeric(quantile(X2, probs = U2))
 L_gaussian = 0.5 * (1 - exp(X1_gaussian)) + 0.5 * (1 - exp(X2_gaussian))
 
 gaussian_summary = data.frame(Alpha = quantiles, Value_At_Risk = VAR(L_gaussian, quantiles), Expected_Shortfall = ES_alpha(L_gaussian, quantiles))
-write.csv(round(gaussian_summary,4), file = 'gaussian_summary.csv')
+write.csv(round(gaussian_summary,4), file = 'Results/gaussian_summary.csv')
 
 ### Task 5: T Copula ###
 RNGversion("4.3.0")
@@ -218,7 +218,7 @@ L_10000df = 0.5 * (1 - exp(X1_10000df)) + 0.5 * (1 - exp(X2_10000df))
 T_copula_summary = data.frame(Alpha = quantiles, VAR_3df = VAR(L_3df, quantiles), VAR_10df = VAR(L_10df, quantiles), VAR_10000df = VAR(L_10000df, quantiles),
            ES_3df = ES_alpha(L_3df, quantiles), ES_10df = ES_alpha(L_10df, quantiles), ES_10000df = ES_alpha(L_10000df, quantiles))
 
-write.csv(round(T_copula_summary,4), file = 'tcopula_summary.csv')
+write.csv(round(T_copula_summary,4), file = 'Results/tcopula_summary.csv')
 
 ### Task 6: Comonotonicity and Countermonotonicity ###
 
@@ -256,7 +256,7 @@ mono_summary = data.frame(Alpha = quantiles, VAR_comono = VAR(L_comono, quantile
                           ES_comono = ES_alpha(L_comono, quantiles) , ES_countermono = ES_alpha(L_countermono, quantiles))
 
 
-write.csv(round(mono_summary,4), file = 'mono_summary.csv')
+write.csv(round(mono_summary,4), file = 'Results/mono_summary.csv')
 
 ### Task 7 ###
 
@@ -284,12 +284,12 @@ prob_table = data.frame(original = probability(X1, X2),
                         comono = probability(X1_comono, X2_comono), 
                         countermono = probability(X1_countermono, X2_countermono))  
 
-write.csv(round(prob_table, 4), file = 'prob_metrics.csv')
+write.csv(round(prob_table, 4), file = 'Results/prob_metrics.csv')
 
 
 L_original = 0.5 * L1_NVDA + 0.5*L2_AMD
 original_df = data.frame(Percentiles = quantiles, VaR = VAR(L_original, quantiles), ES = ES_alpha(L_original, quantiles))
-write.csv(round(original_df, 4), file = 'truevals.csv')
+write.csv(round(original_df, 4), file = 'Results/truevals.csv')
 
 ### Task 8: BiCopSelect ###
 
@@ -512,7 +512,7 @@ parameter_estimation_results <- data.frame(
   theta_3 = c(theta_3_x1, theta_3_x2)
 )
 
-write.csv(parameter_estimation_results, file = 'parameter_estimation.csv')
+write.csv(parameter_estimation_results, file = 'Results/parameter_estimation.csv')
 
 test_invertibility(theta = as.numeric(parameter_estimation_results[1, 4:6])) #Double checking invertability
 test_invertibility(theta = as.numeric(parameter_estimation_results[2, 4:6]))
@@ -681,7 +681,7 @@ prediction_results <- data.frame(
 )
 
 prediction_results
-write.csv(prediction_results, file = 'prediction_results.csv')
+write.csv(prediction_results, file = 'Results/prediction_results.csv')
 
 
 ### Task 5: Testing Goodness of Fit ###
